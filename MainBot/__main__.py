@@ -8,6 +8,7 @@ from MainBot import (
     CURRENT_USERS,
     TOKEN,
     FORCE_SUB,
+    ADMINS,
 )
 import traceback
 import json
@@ -56,6 +57,12 @@ def load_all_users():
         CURRENT_USERS.add(el)
 
 
+def load_all_admins():
+    all_admins = extra_stuff.get_all_higher_users()
+    for el in all_admins:
+        ADMINS.add(el)
+
+
 def extract_user(content):
     data = list(content.split("@"))
     return data[0], data[1]
@@ -92,4 +99,5 @@ if __name__ == "__main__":
     load_user_first_names()
     load_all_users()
     load_force_sub_channel()
+    load_all_admins()
     main()
