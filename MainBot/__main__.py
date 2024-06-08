@@ -6,7 +6,6 @@ from MainBot import (
     ERROR_LOGS,
     LOGGER,
     CURRENT_USERS,
-    telethnn,
     TOKEN,
     FORCE_SUB,
 )
@@ -86,10 +85,6 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
 def main() -> None:
     application.add_error_handler(error_handler)
     application.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
-    if len(argv) not in (1, 3, 4):
-        telethnn.disconnect()
-    else:
-        telethnn.run_until_disconnected()
 
 
 if __name__ == "__main__":
@@ -97,5 +92,4 @@ if __name__ == "__main__":
     load_user_first_names()
     load_all_users()
     load_force_sub_channel()
-    telethnn.start(bot_token=TOKEN)
     main()

@@ -19,3 +19,4 @@ MainBot.session-journal
 MainBot.session
 updates.txt
 *.exe
+MainBot/sample_config.py

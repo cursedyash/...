@@ -24,20 +24,11 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 from MainBot.sample_config import Development as Config
 
 TOKEN = Config.TOKEN
-API_HASH = Config.API_HASH
-API_ID = Config.API_ID
 OWNER_USERNAME = Config.OWNER_USERNAME
-
-try:
-    OWNER_ID = Config.OWNER_ID
-except ValueError:
-    raise Exception("Your OWNER_ID variable isn't a valid integer.")
-
+OWNER_ID = Config.OWNER_ID
 ADMINS = Config.ADMINS
 ADMINS.add(OWNER_ID)
 application = Application.builder().token(TOKEN).build()
-JOB_QUEUE = application.job_queue
-telethnn = TelegramClient("MainBot", API_ID, API_HASH)
 ERROR_LOGS = Config.ERROR_LOGS
 DB_URI = Config.SQLALCHEMY_DATABASE_URI
 BOT_USERNAME = Config.BOT_USERNAME

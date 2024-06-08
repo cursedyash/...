@@ -439,10 +439,11 @@ async def upload(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # UPLOAD_FILE_HANDLER = CommandHandler("upload", upload, block=False)
 UPLOAD_FILE_HANDLER = MessageHandler(
-    filters.ALL
+    filters.CHAT
     & (~filters.COMMAND)
     & (~filters.FORWARDED)
     & (~filters.Regex(r"^https://t\.me/")),
+    # & (~(filters.ChatType == "private")),
     upload,
 )
 BROADCAST_HANDLER = CommandHandler("broadcast", broadcast, block=False)

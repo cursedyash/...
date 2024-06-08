@@ -6,26 +6,12 @@ import string
 
 async def reply_to_message(message, text, bot, chat_id, pm=ParseMode.MARKDOWN, rm=None):
     try:
-        if rm:
-            msgg = await message.reply_text(text, parse_mode=pm, reply_markup=rm)
-            return msgg
-        else:
-            msgg = await message.reply_text(
-                text,
-                parse_mode=pm,
-            )
-            return msgg
+        msgg = await message.reply_text(text, parse_mode=pm, reply_markup=rm)
+        return msgg
     except Exception as e:
-        if rm:
-            msgg = await bot.send_message(chat_id, text, parse_mode=pm, reply_markup=rm)
-            return msgg
-        else:
-            msgg = await bot.send_message(
-                chat_id,
-                text,
-                parse_mode=pm,
-            )
-            return msgg
+        print(e)
+        msgg = await bot.send_message(chat_id, text, parse_mode=pm, reply_markup=rm)
+        return msgg
 
 
 async def send_message_to_chat(text, bot, chat_id, pm=ParseMode.MARKDOWN, rm=None):

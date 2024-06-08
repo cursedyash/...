@@ -12,6 +12,8 @@ def owner_command(func):
     ):
         user = update.effective_user
         message = update.effective_message
+        if not user:
+            return
         user_id = str(user.id)
         if user_id == OWNER_ID:
             return await func(update, context, *args, **kwargs)
@@ -32,6 +34,8 @@ def admin_command(func):
         update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs
     ):
         user = update.effective_user
+        if not user:
+            return
         message = update.effective_message
         user_id = str(user.id)
         if user_id in ADMINS:
