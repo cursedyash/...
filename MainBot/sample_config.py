@@ -14,6 +14,7 @@ class Config(object):
     MAIN_CHANNEL = -100111111111  # database channel id
     FORCE_SUB = {"id": "-1002075202906"}  # force sub channel default id
     BATCH_FILES = {"status": False}
+    PROTECT_CONTENT = True
 
 
 class Production(Config):

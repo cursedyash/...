@@ -10,6 +10,7 @@ from MainBot import (
     MAIN_CHANNEL,
     FIRST_NAMES,
     BATCH_FILES,
+    PROTECT_CONTENT,
 )
 from telegram.ext import (
     CommandHandler,
@@ -42,7 +43,9 @@ async def send_user_file(update: Update, context: ContextTypes.DEFAULT_TYPE, arg
         resp = []
     if resp:
         for el in resp:
-            await context.bot.copy_message(user.id, MAIN_CHANNEL, el)
+            await context.bot.copy_message(
+                user.id, MAIN_CHANNEL, el, protect_content=PROTECT_CONTENT
+            )
     else:
         msg = "Unable to get that file!"
         await message.reply_text(msg)
