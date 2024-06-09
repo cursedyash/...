@@ -60,7 +60,48 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_chat.type != "private":
         message.reply_text("Message me personally!")
         return
+
     if len(args) > 0:
+        if not await part_of_force_sub(context.bot, user.id):
+            try:
+                msg = "<b>👋 Hey, {}\n\nYou need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>".format(
+                    mention_html(int(user.id), html.escape(first_name)),
+                )
+                if FORCE_SUB["id"] != "":
+                    invite_link = await context.bot.createChatInviteLink(
+                        int(FORCE_SUB["id"])
+                    )
+                    invite_link = invite_link.invite_link
+                    file_link = f"https://t.me/{BOT_USERNAME}?start={args[0]}"
+                    file_share_link = f"https://telegram.me/share/url?url={file_link}"
+                    keyboard = InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text=f"Join Channel ⛵️",
+                                    url=f"{invite_link}",
+                                )
+                            ],
+                            [
+                                InlineKeyboardButton(
+                                    text="Try Again 🔄",
+                                    url=f"{file_share_link}",
+                                )
+                            ],
+                        ]
+                    )
+                else:
+                    keyboard = None
+                await send_message_to_chat(
+                    msg,
+                    context.bot,
+                    user.id,
+                    ParseMode.HTML,
+                    keyboard,
+                )
+            except:
+                pass
+            return
         await send_user_file(update, context, args[0])
     else:
         try:
