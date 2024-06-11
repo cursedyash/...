@@ -1,7 +1,6 @@
 class Config(object):
-        TOKEN = (
-        ""  # bot token from bot >
-    )
+        
+    TOKEN = "" #bot token 
     BOT_USERNAME = ""  # bot username
     OWNER_ID = ""  # Owner account user id
     OWNER_USERNAME = ""  # Owner account username
